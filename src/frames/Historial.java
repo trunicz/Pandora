@@ -106,7 +106,6 @@ public class Historial extends JFrame{
 
             @Override
             public void mousePressed(MouseEvent e){
-                Notify.text = "Creador : Romel Elic Gamallo Peralta";
                 Notify notify = new Notify();
                 notify.setVisible(true);
             }
