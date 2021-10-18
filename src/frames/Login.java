@@ -17,7 +17,7 @@ public class Login extends JFrame {
         login.setVisible( true );
     }
 
-    Login( ) {
+    public Login() {
 
         config( );
         startLayout( );
@@ -177,7 +177,6 @@ public class Login extends JFrame {
 
             @Override
             public void mousePressed( MouseEvent e ) {
-                Notify.text = "Creador : Romel Elic Gamallo Peralta";
                 Notify notify = new Notify( );
                 notify.setVisible( true );
             }
@@ -831,7 +830,7 @@ public class Login extends JFrame {
             } catch( SQLException e ) {
                 e.printStackTrace( );
 
-                Notify.text = "    ERROR";
+                Notify.text = "          Error al insertar valor";
                 Notify notify = new Notify();
                 notify.setVisible(true);
             }

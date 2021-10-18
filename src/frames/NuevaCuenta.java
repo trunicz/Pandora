@@ -80,10 +80,33 @@ public class NuevaCuenta extends JFrame {
             }
         });
 
+        JLabel close_icon = new JLabel();
+        close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+        close_icon.setBounds(this.getWidth()-35, 5, 30, 30);
+        close_icon.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e){
+                closeOperation();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon_2.png"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+            }
+        });
+        close_icon.setBorder(null);
+        close_icon.setBackground(new Color(0, 0, 0, 0));
+        panel.add(close_icon);
+
         //////////////////////////////////////////////////////////////////////////////////////////
 
 
-        comboBox = new JComboBox<String>();
+        comboBox = new JComboBox<>();
         comboBox.setFont(designManager.font.deriveFont(Font.BOLD,20));
         comboBox.setBounds(30,50,panel.getWidth()-60,30);
         comboBox.setForeground(designManager.spaceGray);
@@ -146,6 +169,10 @@ public class NuevaCuenta extends JFrame {
         validate();
     }
 
+    private void closeOperation(){
+        dispose();
+    }
+
     private void label_1MousePressed(MouseEvent e){
         x = e.getX();
         y = e.getY();
@@ -158,10 +185,6 @@ public class NuevaCuenta extends JFrame {
         this.setLocation(x-this.x,y-this.y);
     }
 
-    private void close(){
-        dispose();
-    }
-
 
     private void updateAccount() throws SQLException {
 
@@ -171,7 +194,6 @@ public class NuevaCuenta extends JFrame {
         }
 
         String cantidad = textField_cantidad.getText();
-        String tipo = (String) comboBox.getSelectedItem();
 
         if (textField_cantidad.getText().equals("")){
             Notify.text = "Ingresar un valor";
@@ -194,7 +216,7 @@ public class NuevaCuenta extends JFrame {
                 PreparedStatement insert_cuenta = conn.prepareStatement(insertcuenta);
                 insert_cuenta.setDouble(1, Double.parseDouble(cantidad));
                 insert_cuenta.setString(2, id);
-                if(comboBox.getSelectedItem().equals("Ahorro")){
+                if(Objects.equals(comboBox.getSelectedItem(), "Ahorro")){
                     insert_cuenta.setString(3, "Ahorro");
                 }else {
                     insert_cuenta.setString(3, "Credito");

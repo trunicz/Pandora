@@ -76,6 +76,29 @@ public class EnviarDinero extends JFrame {
             }
         } );
 
+        JLabel close_icon = new JLabel();
+        close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+        close_icon.setBounds(this.getWidth()-35, 5, 30, 30);
+        close_icon.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e){
+                closeOperation();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon_2.png"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+            }
+        });
+        close_icon.setBorder(null);
+        close_icon.setBackground(new Color(0, 0, 0, 0));
+        panel.add(close_icon);
+
         //////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -188,6 +211,10 @@ public class EnviarDinero extends JFrame {
         panel.add( textField_description );
         panel.add ( textField_cantidad );
         panel.add(button_ok);
+    }
+
+    private void closeOperation(){
+        dispose();
     }
 
     private void label_1MousePressed(MouseEvent e){

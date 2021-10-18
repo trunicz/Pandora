@@ -18,7 +18,7 @@ public class Notify extends JFrame {
     //declare
 
     private int x,y;
-    public static String text = "Creador : Romel Elic Gamallo Peralta";
+    public static String text = "Gamallo Peralta | Gonzalez Castro";
 
     Notify(){
         config();
@@ -41,6 +41,29 @@ public class Notify extends JFrame {
         panel.setLayout(null);
         panel.setBounds(0,0,this.getWidth(),this.getHeight());
         this.add(panel);
+
+        JLabel close_icon = new JLabel();
+        close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+        close_icon.setBounds(this.getWidth()-35, 5, 30, 30);
+        close_icon.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e){
+                closeOperation();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon_2.png"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e){
+                close_icon.setIcon(new ImageIcon("src/images/exit_icon.png"));
+            }
+        });
+        close_icon.setBorder(null);
+        close_icon.setBackground(new Color(0, 0, 0, 0));
+        panel.add(close_icon);
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -95,6 +118,10 @@ public class Notify extends JFrame {
 
         panel.add(button_ok);
 
+    }
+
+    private void closeOperation(){
+        dispose();
     }
 
     void setFrameIcon(){
